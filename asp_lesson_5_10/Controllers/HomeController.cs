@@ -38,9 +38,20 @@ namespace asp_lesson_5_10.Controllers
         [HttpPost]
         public string Add(List<Book> books)
         {
-            //db.Books.AddRange(books);
+            db.Books.AddRange(books);
             db.SaveChanges();
             return "done!";
+        }
+        [HttpGet]
+        public ActionResult Array()
+        {
+            Book firstBook = db.Books.ToList<Book>().FirstOrDefault();
+            return View(firstBook);
+        }
+        [HttpPost]
+        public string Array(Book book, Book myBook)
+        {
+            return "Array done";
         }
     }
 }
